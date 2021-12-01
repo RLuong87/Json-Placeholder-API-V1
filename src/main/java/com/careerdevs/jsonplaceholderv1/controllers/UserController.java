@@ -41,7 +41,6 @@ public class UserController {
     public Object userRange(RestTemplate restTemplate,
                             @RequestParam(name = "id") String startId,
                             @RequestParam(name = "id") String endId) {
-
         ArrayList<User> allUsers = new ArrayList<>();
 
         int start = Integer.parseInt(startId), end = Integer.parseInt(endId);

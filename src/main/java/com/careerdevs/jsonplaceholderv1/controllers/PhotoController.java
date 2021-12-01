@@ -17,7 +17,7 @@ public class PhotoController {
 
     @GetMapping("/photos/{id}")
     public Object getPhotoID(RestTemplate restTemplate,
-                             @PathVariable(name = "id") String id) {
+                             @PathVariable String id) {
         String URL = UserController.JPURL + "photos/" + id;
         try {
 

@@ -4,10 +4,8 @@ import com.careerdevs.jsonplaceholderv1.models.User;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -39,19 +37,18 @@ public class UserController {
     }
 
 
-    @GetMapping("/range")
+    @GetMapping("/{start}/{end}")
     public Object userRange(RestTemplate restTemplate,
-                                     @RequestParam(name = "start") String start,
-                                     @RequestParam (name = "end") String end) {
-        ArrayList<User> allUsers = new ArrayList<>();
+                                     @PathVariable(name = "start") String start, @PathVariable(name = "end") String end) {
 
         int startId = Integer.parseInt(start), endId = Integer.parseInt(end);
+        ArrayList<User> allUsers = new ArrayList<>();
 
         for (int i = startId; i <= endId; i++) {
 
-            String URL = JPURL + "users/";
-            User[] users = restTemplate.getForObject(URL, User[].class);
-            allUsers.addAll(List.of(users));
+            String URL = JPURL + "users/" + i;
+            User users = restTemplate.getForObject(URL, User.class);
+            Collections.addAll(allUsers, users);
         }
         return allUsers;
     }

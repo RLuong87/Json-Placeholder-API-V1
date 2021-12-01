@@ -11,16 +11,6 @@ public class UserPhotos {
     private String url;
     private String thumbnailURL;
 
-    public UserPhotos(String albumId, String title, String url, String thumbnailURL) {
-        this.albumId = albumId;
-        this.title = title;
-        this.url = url;
-        this.thumbnailURL = thumbnailURL;
-    }
-
-    public UserPhotos() {
-    }
-
     public String getAlbumId() {
         return albumId;
     }

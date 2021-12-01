@@ -1,10 +1,7 @@
 package com.careerdevs.jsonplaceholderv1.controllers;
 
 import com.careerdevs.jsonplaceholderv1.models.UserPhotos;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,10 +18,10 @@ public class PhotoController {
     @GetMapping("/photos/{id}")
     public Object getPhotoID(RestTemplate restTemplate,
                              @PathVariable(name = "id") String id) {
-        String URL = UserController.JPURL + "photos" + id;
+        String URL = UserController.JPURL + "photos/" + id;
         try {
 
-            return restTemplate.getForObject(URL, UserPhotos[].class);
+            return restTemplate.getForObject(URL, UserPhotos.class);
 
         } catch (HttpClientErrorException.NotFound e) {
 
@@ -35,5 +32,13 @@ public class PhotoController {
             return e.getMessage();
         }
     }
+
+//    @GetMapping("/photos")
+//    public Object userRange(RestTemplate restTemplate,
+//                            @RequestParam(name = "id") String start,
+//                            @RequestParam(name = "id") String end) {
+//        String URL = UserController.JPURL + "users" + start + end;
+//        return restTemplate.getForObject(URL, UserPhotos[].class);
+//    }
 
 }
